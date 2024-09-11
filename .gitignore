@@ -1,0 +1,24 @@
+# Virtual Environment
+.venv/
+venv/
+
+# Python bytecode and cache files
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+*.egg-info/
+build/
+dist/
+
+# Unit test / coverage reports
+.coverage
+.tox/
+.pytest_cache/
+
+# Dotenv environment variables
+.env
+
+# Docker-related files (optional, if you don't want to track them)
+*.log
+docker-compose.override.yml
