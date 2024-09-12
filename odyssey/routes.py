@@ -15,21 +15,35 @@ def about():
     return render_template('about.html')  # Ensure 'about.html' exists in templates
 
 # API Route 1: GET Endpoint (returns JSON data)
+import requests
+
 @main.route('/api/data', methods=['GET'])
 def get_data():
+    response = requests.get('https://official-joke-api.appspot.com/jokes/programming/random')
+    joke = response.json()[0]
+
     return jsonify({
-        'message': 'This is a GET request',
+        'message 1': "This is a GET Request",
+        'message': f"{joke['setup']} {joke['punchline']}",
         'timestamp': datetime.utcnow().isoformat()
     })
 
 # API Route 2: POST Endpoint (handles JSON data)
+# POST route that accepts data from the URL (query parameters)
+# POST route that accepts query parameters
 @main.route('/api/data', methods=['POST'])
 def post_data():
-    if not request.is_json:
-        return jsonify({"error": "Invalid input, JSON expected"}), 400
+    name = request.form.get('name')
+    age = request.form.get('age')
 
-    data = request.get_json()
+    if not name or not name.isalpha():
+        return jsonify({"error": "Invalid or missing name"}), 400
+
+    if not age or not age.isdigit():
+        return jsonify({"error": "Invalid or missing age"}), 400
+
     return jsonify({
-        'data': data,
+        'name': name,
+        'age': age,
         'timestamp': datetime.utcnow().isoformat()
     })
