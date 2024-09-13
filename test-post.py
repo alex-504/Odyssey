@@ -2,7 +2,7 @@ import requests
 import json
 
 # URL of your Flask API POST endpoint
-url = 'http://localhost:5000/api/data'
+url = 'http://localhost:5001/api/data'
 
 # Data to send in the POST request
 data = {
