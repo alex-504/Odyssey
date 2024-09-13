@@ -72,7 +72,7 @@ def post_data():
     name = request.form.get('name')
     age = request.form.get('age')
 
-    if not name or not name.isalpha():
+    if not name or not all(part.isalpha() for part in name.split()):
         return jsonify({"error": "Invalid or missing name"}), 400
 
     if not age or not age.isdigit():
